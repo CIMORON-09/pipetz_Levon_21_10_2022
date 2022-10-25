@@ -2,10 +2,11 @@ import random
 
 import wrap
 spisok_harikov = []
-
+udalenie=None
 wrap.world.create_world(600,600)
 wrap.add_sprite_dir("sprite")
 skolko=0
+
 @wrap.always(delay=3000)
 def risovka_kvadratov():
     otvet=random.randint(1,3)
@@ -38,13 +39,46 @@ def risovka_kvadratov():
 
 
     spisok_harikov.append(ss)
+@wrap.on_key_down(wrap.K_p)
+def udalenie_nadpisey():
+    global udalenie
+    udalenie+=1
 
+
+def info():
+    if udalenie % 2 == 0:
+        first=wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся",260,30,text_color=[5,55,125])
+        wrap.sprite.hide(first)
+        second=wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ",250,60,text_color=[5,55,125] )
+        wrap.sprite.hide(second)
+
+    if udalenie % 2 ==1:
+        first=wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся",260,30,text_color=[5,55,125])
+        wrap.sprite.show(first)
+        second=wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ",250,60,text_color=[5,55,125] )
+        wrap.sprite.show(second)
+
+info()
 
 
 @wrap.on_key_down(wrap.K_SPACE)
 def ostanovka():
     global skolko
     skolko+=1
+    print("dssc")
+
+
+
+@wrap.on_key_down(wrap.K_d)
+def udalenie():
+    global spisok_harikov
+    for did in spisok_harikov:
+
+        wrap.sprite.remove(did["id"])
+    spisok_harikov.clear()
+    print("regfd")
+
+
 
 
 @wrap.always(delay=10)
