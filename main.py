@@ -2,10 +2,15 @@ import random
 
 import wrap
 spisok_harikov = []
-udalenie=None
+udalenie=0
 wrap.world.create_world(600,600)
 wrap.add_sprite_dir("sprite")
 skolko=0
+first = wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся", 260, 30, text_color=[5, 55, 125])
+second = wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ", 250, 60, text_color=[5, 55, 125])
+wrap.sprite.add_text("3.Cколько шариков на экрне", 135, 100, text_color=[5, 55, 125])
+kolvo_harikov = wrap.sprite.add_text("0", 280,100, text_color=[5, 55, 125])
+
 
 @wrap.always(delay=3000)
 def risovka_kvadratov():
@@ -44,21 +49,18 @@ def udalenie_nadpisey():
     global udalenie
     udalenie+=1
 
-
+@wrap.on_key_down(wrap.K_p)
 def info():
+    global udalenie , first , seecond
+
     if udalenie % 2 == 0:
-        first=wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся",260,30,text_color=[5,55,125])
         wrap.sprite.hide(first)
-        second=wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ",250,60,text_color=[5,55,125] )
         wrap.sprite.hide(second)
 
     if udalenie % 2 ==1:
-        first=wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся",260,30,text_color=[5,55,125])
         wrap.sprite.show(first)
-        second=wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ",250,60,text_color=[5,55,125] )
         wrap.sprite.show(second)
 
-info()
 
 
 @wrap.on_key_down(wrap.K_SPACE)
@@ -70,7 +72,7 @@ def ostanovka():
 
 
 @wrap.on_key_down(wrap.K_d)
-def udalenie():
+def udalenie_sharikov():
     global spisok_harikov
     for did in spisok_harikov:
 
@@ -83,10 +85,15 @@ def udalenie():
 
 @wrap.always(delay=10)
 def rrrrrr():
-    global speedy,speedx,spisok_harikov,skolko
+    global speedy,speedx,spisok_harikov,skolko,kolvo_harikov
 
     if skolko % 2 == 1:
         return
+
+    skolko_elementov=len(spisok_harikov)
+
+    wrap.sprite_text.set_text(kolvo_harikov,str(skolko_elementov))
+
 
     for did in   spisok_harikov:
         wrap.sprite.move(did["id"], did["speedx"], did ["speedy"])
