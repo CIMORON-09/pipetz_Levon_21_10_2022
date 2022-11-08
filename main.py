@@ -11,7 +11,9 @@ nazhali=1
 first = wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся", 260, 30, text_color=[5, 55, 125])
 second = wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ", 250, 60, text_color=[5, 55, 125])
 third=wrap.sprite.add_text("3.Cколько шариков на экрне", 135, 90, text_color=[5, 55, 125])
-fourth=wrap.sprite.add_text("4.Eсли ты нажмешь 2 то включится необычный полет шариков",300, 120, text_color=[5, 55, 125])
+fourth=wrap.sprite.add_text("4.Eсли ты нажмешь 1 то включится обычный режим полета",300, 120, text_color=[5, 55, 125])
+fifth=wrap.sprite.add_text("5.Eсли ты нажмешь 2 то включится необычный полет шариков",300, 150, text_color=[5, 55, 125])
+sixth=wrap.sprite.add_text("6.Если нажмешь p то все надписи исчезнут",300, 180, text_color=[5, 55, 125])
 
 kolvo_harikov = wrap.sprite.add_text("0", 280, 90, text_color=[5, 55, 125])
 
@@ -19,6 +21,9 @@ wrap.sprite.move_left_to(first,0)
 wrap.sprite.move_left_to(second,0)
 wrap.sprite.move_left_to(third,0)
 wrap.sprite.move_left_to(fourth,0)
+wrap.sprite.move_left_to(fifth,0)
+wrap.sprite.move_left_to(sixth,0)
+
 
 
 
