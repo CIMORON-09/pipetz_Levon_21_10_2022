@@ -8,6 +8,9 @@ wrap.world.create_world(600, 600)
 wrap.add_sprite_dir("sprite")
 skolko = 0
 nazhali=1
+up=1
+right=1
+
 first = wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся", 260, 30, text_color=[5, 55, 125])
 second = wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ", 250, 60, text_color=[5, 55, 125])
 third=wrap.sprite.add_text("3.Cколько шариков на экрне", 135, 90, text_color=[5, 55, 125])
@@ -27,7 +30,7 @@ wrap.sprite.move_left_to(sixth,0)
 
 
 
-@wrap.always(delay=3000)
+@wrap.always(delay=1000)
 def risovka_kvadratov():
     otvet = random.randint(1, 3)
     if otvet == 1:
@@ -71,12 +74,20 @@ def info():
     if udalenie % 2 == 0:
         wrap.sprite.hide(first)
         wrap.sprite.hide(second)
+        wrap.sprite.hide(third)
+        wrap.sprite.hide(fourth)
+        wrap.sprite.hide(fifth)
+        wrap.sprite.hide(sixth)
+        wrap.sprite.hide(kolvo_harikov)
 
     if udalenie % 2 == 1:
+        wrap.sprite.show(kolvo_harikov)
         wrap.sprite.show(first)
         wrap.sprite.show(second)
-
-
+        wrap.sprite.show(third)
+        wrap.sprite.show(fourth)
+        wrap.sprite.show(fifth)
+        wrap.sprite.show(sixth)
 
 
 
@@ -84,7 +95,7 @@ def info():
 
 @wrap.always(delay=10)
 def rrrrrr():
-    global speedy, speedx, spisok_harikov, skolko, kolvo_harikov, nazhali
+    global speedy, speedx, skolko, kolvo_harikov, nazhali,right,up
 
     if skolko % 2 == 1:
         return
@@ -94,6 +105,16 @@ def rrrrrr():
         for did in spisok_harikov:
             wrap.sprite.move(did["id"], did["speedx"], did["speedy"])
         otbivka()
+
+
+    # if right==0 and up==0:
+
+
+
+
+
+
+
 
     if nazhali == 2:
         for did in spisok_harikov:
@@ -154,6 +175,10 @@ def goggga(keys):
 
     if wrap.K_2 in keys:
         nazhali = 2
+
+
+
+
 # удаляем все шарики с экрана
 @wrap.on_key_down(wrap.K_d)
 def udalenie_sharikov():
@@ -170,6 +195,22 @@ def ostanovka():
     global skolko
     skolko += 1
     print("dssc")
+
+@wrap.on_key_down(wrap.K_UP,wrap.K_DOWN,wrap.K_LEFT,wrap.K_RIGHT)
+def vibor_ugla_poleta_harika(key):
+    global up,right
+
+    if wrap.K_UP==key:
+        up=1
+
+    if wrap.K_DOWN==key:
+        up=0
+
+    if wrap.K_RIGHT==key:
+        right=1
+
+    if wrap.K_LEFT==key:
+        right=0
 
 import wrap_py
 
