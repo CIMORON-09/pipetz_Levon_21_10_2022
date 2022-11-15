@@ -10,7 +10,7 @@ skolko = 0
 nazhali=1
 up=1
 right=1
-
+skolko_sozdavat=3000
 first = wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся", 260, 30, text_color=[5, 55, 125])
 second = wrap.sprite.add_text("2.Если ты нажмешь Del то все шарики удалтся ", 250, 60, text_color=[5, 55, 125])
 third=wrap.sprite.add_text("3.Cколько шариков на экрне", 135, 90, text_color=[5, 55, 125])
@@ -26,12 +26,19 @@ wrap.sprite.move_left_to(third,0)
 wrap.sprite.move_left_to(fourth,0)
 wrap.sprite.move_left_to(fifth,0)
 wrap.sprite.move_left_to(sixth,0)
+@wrap.on_key_down()
+def adqada(keys):
+    global skolko_sozdavat
+    if wrap.K_UP in keys:
+        skolko_sozdavat+=1000
+    if wrap.K_DOWN in keys:
+        skolko_sozdavat -=1000
 
 
-
-
-@wrap.always(delay=1000)
+# @wrap.always(delay=1000)
 def risovka_kvadratov():
+
+
     otvet = random.randint(1, 3)
     if otvet == 1:
         otvet = "edad"
@@ -62,9 +69,10 @@ def risovka_kvadratov():
 
     spisok_harikov.append(ss)
     print("ppp")
-
-
-
+@wrap.always(delay=1000)
+def tupoy():
+    risovka_kvadratov()
+    risovka_kvadratov()
 
 @wrap.on_key_down(wrap.K_p)
 def info():
