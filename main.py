@@ -9,6 +9,7 @@ wrap.add_sprite_dir("sprite")
 skolko = 0
 nazhali=1
 up=1
+verh=0
 right=1
 skolko_sozdavat=3000
 first = wrap.sprite.add_text("1.Если ты нажмешь Space то все шарики остановятся", 260, 30, text_color=[5, 55, 125])
@@ -17,6 +18,8 @@ third=wrap.sprite.add_text("3.Cколько шариков на экрне", 135
 fourth=wrap.sprite.add_text("4.Eсли ты нажмешь 1 то включится обычный режим полета",300, 120, text_color=[5, 55, 125])
 fifth=wrap.sprite.add_text("5.Eсли ты нажмешь 2 то включится необычный полет шариков",300, 150, text_color=[5, 55, 125])
 sixth=wrap.sprite.add_text("6.Если нажмешь p то все надписи исчезнут",300, 180, text_color=[5, 55, 125])
+seventh = wrap.sprite.add_text("7.Количество шариков в секнду    " + str(verh), 300, 230, text_color=[5, 55, 125])
+
 
 kolvo_harikov = wrap.sprite.add_text("0", 280, 90, text_color=[5, 55, 125])
 
@@ -26,6 +29,8 @@ wrap.sprite.move_left_to(third,0)
 wrap.sprite.move_left_to(fourth,0)
 wrap.sprite.move_left_to(fifth,0)
 wrap.sprite.move_left_to(sixth,0)
+wrap.sprite.move_left_to(seventh, 0)
+
 @wrap.on_key_down()
 def adqada(keys):
     global skolko_sozdavat
@@ -35,7 +40,6 @@ def adqada(keys):
         skolko_sozdavat -=1000
 
 
-# @wrap.always(delay=1000)
 def risovka_kvadratov():
 
 
@@ -71,9 +75,71 @@ def risovka_kvadratov():
     print("ppp")
 @wrap.always(delay=1000)
 def tupoy():
-    risovka_kvadratov()
-    risovka_kvadratov()
-
+    if verh==1:
+        risovka_kvadratov()
+    if verh==2:
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==3:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==4:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==5:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==6:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==7:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==8:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==9:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+    if verh==10:
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
+        risovka_kvadratov()
 @wrap.on_key_down(wrap.K_p)
 def info():
     global udalenie, first, seecond
@@ -87,7 +153,7 @@ def info():
         wrap.sprite.hide(fifth)
         wrap.sprite.hide(sixth)
         wrap.sprite.hide(kolvo_harikov)
-
+        wrap.sprite.hide(seventh)
     if udalenie % 2 == 1:
         wrap.sprite.show(kolvo_harikov)
         wrap.sprite.show(first)
@@ -96,6 +162,7 @@ def info():
         wrap.sprite.show(fourth)
         wrap.sprite.show(fifth)
         wrap.sprite.show(sixth)
+        wrap.sprite.show(seventh)
 
 
 
@@ -113,17 +180,6 @@ def rrrrrr():
         for did in spisok_harikov:
             wrap.sprite.move(did["id"], did["speedx"], did["speedy"])
         otbivka()
-
-
-    # if right==0 and up==0:
-
-
-
-
-
-
-
-
     if nazhali == 2:
         for did in spisok_harikov:
             wrap.sprite.move(did["id"], did["speedx2"], did["speedy2"])
@@ -198,27 +254,39 @@ def udalenie_sharikov():
 
 
 # останавливаем движение шариков
-@wrap.on_key_down(wrap.K_SPACE)
-def ostanovka():
-    global skolko
-    skolko += 1
+@wrap.on_key_down()
+def ostanovka(key):
+    global skolko,verh
+    if wrap.K_SPACE == key:
+        skolko += 1
+
+    if wrap.K_UP== key:
+        verh+=1
+
+    if wrap.K_DOWN== key:
+        verh-=1
+        if verh<0:
+            verh=0
+    wrap.sprite_text.set_text(seventh,"7.Количество шариков в секнду     "  +str(verh))
+    wrap.sprite.move_left_to(seventh, 0)
+
     print("dssc")
 
-@wrap.on_key_down(wrap.K_UP,wrap.K_DOWN,wrap.K_LEFT,wrap.K_RIGHT)
-def vibor_ugla_poleta_harika(key):
-    global up,right
-
-    if wrap.K_UP==key:
-        up=1
-
-    if wrap.K_DOWN==key:
-        up=0
-
-    if wrap.K_RIGHT==key:
-        right=1
-
-    if wrap.K_LEFT==key:
-        right=0
+# @wrap.on_key_down(wrap.K_UP,wrap.K_DOWN,wrap.K_LEFT,wrap.K_RIGHT)
+# def vibor_ugla_poleta_harika(key):
+#     global up,right
+#
+#     if wrap.K_UP==key:
+#         up=1
+#
+#     if wrap.K_DOWN==key:
+#         up=0
+#
+#     if wrap.K_RIGHT==key:
+#         right=1
+#
+#     if wrap.K_LEFT==key:
+#         right=0
 
 import wrap_py
 
