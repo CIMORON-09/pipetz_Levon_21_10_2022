@@ -1,5 +1,12 @@
+import random
 a=0
-skolko=30
-while a!=skolko:
-    a+=1
-    print(a)
+p=random.randint(1,20)
+l=range(p)
+
+for did in l:
+    print("privet")
+
+#
+# while a!=p:
+#     a+=1
+#     print("privet"+str(a))

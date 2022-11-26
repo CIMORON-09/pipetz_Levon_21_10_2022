@@ -75,71 +75,17 @@ def risovka_kvadratov():
     print("ppp")
 @wrap.always(delay=1000)
 def tupoy():
-    if verh==1:
+    r=range(verh)
+    for did in r:
         risovka_kvadratov()
-    if verh==2:
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==3:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==4:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==5:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==6:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==7:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==8:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==9:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-    if verh==10:
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
-        risovka_kvadratov()
+
+
+
+
+
+
+
+
 @wrap.on_key_down(wrap.K_p)
 def info():
     global udalenie, first, seecond
